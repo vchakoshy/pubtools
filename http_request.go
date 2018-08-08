@@ -5,8 +5,21 @@ import (
 	"strconv"
 )
 
-func GetRequestQuery(key string, r *http.Request) (string, bool) {
-	vals := r.URL.Query()
+// HTTPRequestLib struct
+type HTTPRequestLib struct {
+	r *http.Request
+}
+
+// HTTPRequest returns HTTPRequestLib
+func HTTPRequest(r *http.Request) *HTTPRequestLib {
+	return &HTTPRequestLib{
+		r: r,
+	}
+}
+
+// GetQuery returns guery value
+func (h *HTTPRequestLib) GetQuery(key string) (string, bool) {
+	vals := h.r.URL.Query()
 	val, ok := vals[key]
 	if !ok {
 		return "", false
@@ -15,8 +28,9 @@ func GetRequestQuery(key string, r *http.Request) (string, bool) {
 	return val[0], true
 }
 
-func GetRequestIntQuery(key string, r *http.Request) (int, bool) {
-	valToRe, ex := GetRequestQuery(key, r)
+// GetIntQuery returns guery int value
+func (h *HTTPRequestLib) GetIntQuery(key string) (int, bool) {
+	valToRe, ex := h.GetQuery(key)
 
 	if !ex {
 		return 0, false
