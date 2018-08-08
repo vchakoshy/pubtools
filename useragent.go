@@ -16,8 +16,16 @@ var (
 	}
 )
 
-// RandomUserAgent returns random useragent
-func RandomUserAgent() string {
+// UserAgentLib struct
+type UserAgentLib struct{}
+
+// UserAgent returns UserAgentLib
+func UserAgent() *UserAgentLib {
+	return &UserAgentLib{}
+}
+
+// Random returns random useragent
+func (u *UserAgentLib) Random() string {
 	rand.Seed(time.Now().Unix())
 	return agents[rand.Intn(len(agents))]
 }

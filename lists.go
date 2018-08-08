@@ -4,8 +4,16 @@ import (
 	"strings"
 )
 
-// GetListUniqueString returns unique and not empty string list
-func GetListUniqueString(elements []string) []string {
+// ListLib struct
+type ListLib struct{}
+
+// List returns ListLib
+func List() *ListLib {
+	return &ListLib{}
+}
+
+// UniqueListOfString returns unique and not empty string list
+func (l *ListLib) UniqueListOfString(elements []string) []string {
 	encountered := map[string]bool{}
 	result := []string{}
 
@@ -22,8 +30,8 @@ func GetListUniqueString(elements []string) []string {
 	return result
 }
 
-// GetListStringInSlice checks is string in slice
-func GetListStringInSlice(slice []string, val string) bool {
+// IsStringInSlice checks is string in slice
+func (l *ListLib) IsStringInSlice(slice []string, val string) bool {
 	for _, v := range slice {
 		if v == val {
 			return true

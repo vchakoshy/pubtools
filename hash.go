@@ -6,15 +6,23 @@ import (
 	"encoding/hex"
 )
 
-// GetMD5Hash returns md5 hash of string
-func GetMD5Hash(text string) string {
+// HashLib struct
+type HashLib struct{}
+
+// Hash returns hash
+func Hash() *HashLib {
+	return &HashLib{}
+}
+
+// MD5 returns md5 hash of string
+func (h *HashLib) MD5(text string) string {
 	hasher := md5.New()
 	hasher.Write([]byte(text))
 	return hex.EncodeToString(hasher.Sum(nil))
 }
 
-// GetBase64Hash returns base64 hash of string
-func GetBase64Hash(text string) string {
+// Base64 returns base64 hash of string
+func (h *HashLib) Base64(text string) string {
 	data := []byte(text)
 	str := base64.StdEncoding.EncodeToString(data)
 	return str
