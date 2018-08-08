@@ -12,5 +12,5 @@ func RandomInt(min, max int) int {
 
 // RandomDuration returns random duration between min and max
 func RandomDuration(min, max int) time.Duration {
-	return time.Duration(RandomDuration(min, max))
+	return time.Duration(RandomInt(min, max))
 }
